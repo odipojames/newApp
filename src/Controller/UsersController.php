@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-
+use Cake\ORM\TableRegistry;
 
 class UsersController extends AppController
 
@@ -46,33 +46,42 @@ public function login()
 }
 
 public function register(){
+  $Profile  =   TableRegistry::getTableLocator()->get('Profiles');  
   $user =  $this->Users->newEmptyEntity();
+  $profile =  $Profile->newEmptyEntity();
+  $profileData = ['user_id'=>null];
+
+  $this->set(compact('user'));
+
   if($this->request->is('post')){
     //form validations
     if($this->request->getData('password_confirm')!= $this->request->getData('password')){
-        $this->Flash->error(_('passwords do not match'));
+        return $this->Flash->error(__('passwords do not match'));
     }
 
     if(strlen($this->request->getData('password'))<4){
-         $this->Flash->error(_('passwords must be four characters and above!'));
+       return   $this->Flash->error(__('passwords must be four characters and above!'));
     }
 
     $emailExists = $this->Users->exists(['email' => $this->request->getData('email')]);
     if($emailExists){
-        $this->Flash->error(_("email already used!"));
+        return $this->Flash->error(__("email already used!"));
     }
    
     $user = $this->Users->patchEntity($user,$this->request->getData());
+    $profile = $Profile->patchEntity($profile,$profileData);
     if($this->Users->save($user)){
-        $this->Flash->success(_("sign up successful! Login now"));
-        $this->redirect(['controller' => 'Users', 'action' => 'login']);
+        $profile->user_id=$user->id;
+        $Profile->save($profile);
+        $this->Flash->success(__("sign up successful! Login now"));
+       return  $this->redirect(['controller' => 'Users', 'action' => 'login']);
     }
    else{
-    $this->Flash->error(_("error occured try again!"));
+    return  $this->Flash->error(__("error occured try again!"));
    }
 
   }
-  $this->set(compact('user'));
+  
 
 }
 

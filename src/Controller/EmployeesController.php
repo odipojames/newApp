@@ -19,6 +19,7 @@ class EmployeesController extends AppController
     public function index()
     {
         $employees = $this->paginate($this->Employees);
+        #pr($this->request->getSession()->read('Auth.username')); exit;
 
         $this->set(compact('employees'));
     }
