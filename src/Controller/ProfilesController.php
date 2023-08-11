@@ -74,7 +74,7 @@ class ProfilesController extends AppController
         $profile = $this->Profiles->find()->where(['user_id'=>$id])->first();
         $profileArray= $this->Profiles->find()->where(['user_id'=>$this->request->getSession()->read('Auth.id')])->first()->toArray();
         
-       
+        $tab = $this->request->getQuery('content');
         
         if(!$profile){
             $profile = $this->Profiles->newEmptyEntity();
@@ -88,7 +88,8 @@ class ProfilesController extends AppController
         if($profileArray['acadamic_qualification']){
             $acadamic  = $acadamicData->find()->where(['id'=>$profile->acadamic_qualification])->first();
         }
-        $this->set(compact('details','acadamic'));
+        $this->set(compact('details','acadamic','tab'));
+
         if($this->request->is(['patch','post','put'])){
            
            if($this->request->getData('phone_number')){
@@ -97,9 +98,10 @@ class ProfilesController extends AppController
               $profile = $this->Profiles->patchEntity($profile, $profileArray);
               $profile->personal_details=$details->id;
               $this->Profiles->save($profile);
-              $tabToOpen = 'profile';
               $this->Flash->success(__('personal details Saved! move to acadamic'));
-              $this->redirect(['action' => 'add', '?' => ['tab' => $tabToOpen]]);
+              $this->redirect(['action' => 'add', '?' => ['tab' => 'content2']]);
+             
+              
             }
 
            }
@@ -111,7 +113,9 @@ class ProfilesController extends AppController
               $profile->acadamic_qualification=$acadamic->id;
               if($this->Profiles->save($profile)){
                 $this->Flash->success(__('profile updated!'));
-                $this->set(compact('details','acadamic'));
+                $this->redirect(['action' => 'add', '?' => ['tab' => 'content1']]);
+               
+                
               }
               else{
                 $this->Flash->error(__("error profile not updated!"));
@@ -121,7 +125,8 @@ class ProfilesController extends AppController
            }
             
         }
-        $this->set(compact('acadamic','profile','details','programs'));
+        $this->set(compact('acadamic','profile','details','programs','tab'));
+        
    
     }
 
