@@ -76,6 +76,8 @@ return [
      */
     'Security' => [
         'salt' => env('SECURITY_SALT'),
+        'csrfUseOnce' => true,
+        'csrfTokenCheck' => false,
     ],
 
     /*
