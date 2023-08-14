@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "88e6b782e61f6a2d6b04f736502bbe39",
+    "content-hash": "a2e468977138d39839752ab7807e52ce",
     "packages": [
         {
             "name": "arodu/cakelte",
@@ -2139,16 +2139,16 @@
         },
         {
             "name": "twbs/bootstrap",
-            "version": "v5.0.2",
+            "version": "v5.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "688bce4fa695cc360a0d084e34f029b0c192b223"
+                "reference": "2a1bf52b73fc9a97f6fef75aa1b29b3e9f0288b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/688bce4fa695cc360a0d084e34f029b0c192b223",
-                "reference": "688bce4fa695cc360a0d084e34f029b0c192b223",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/2a1bf52b73fc9a97f6fef75aa1b29b3e9f0288b3",
+                "reference": "2a1bf52b73fc9a97f6fef75aa1b29b3e9f0288b3",
                 "shasum": ""
             },
             "replace": {
@@ -2183,9 +2183,9 @@
             ],
             "support": {
                 "issues": "https://github.com/twbs/bootstrap/issues",
-                "source": "https://github.com/twbs/bootstrap/tree/v5.0.2"
+                "source": "https://github.com/twbs/bootstrap/tree/v5.3.1"
             },
-            "time": "2021-06-22T18:29:16+00:00"
+            "time": "2023-07-26T07:46:38+00:00"
         }
     ],
     "packages-dev": [
