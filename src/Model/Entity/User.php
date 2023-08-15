@@ -25,9 +25,8 @@ class User extends Entity
      * @var array<string, bool>
      */
     protected $_accessible = [
-        'username' => true,
-        'email' => true,
-        'password' => true,
+        '*' => true,
+        'id' => false,
     ];
 
     /**

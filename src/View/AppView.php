@@ -32,11 +32,12 @@ use CakeLte\View\CakeLteTrait;
 class AppView extends View{
   use CakeLteTrait;
 
-  public $layout = 'CakeLte.default';
+  #public $layout = 'CakeLte.default';
 
   public function initialize(): void{
       parent::initialize();
       $this->initializeCakeLte();
+      $this->setLayout('default');
       
   }
 }
