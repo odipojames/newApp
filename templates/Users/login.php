@@ -41,9 +41,21 @@ $this->layout = 'CakeLte.login';
             
         </div>
     
+        <div class="row">
+            <div class="col-6">    
         <p class="mb-0">
             <?= $this->Html->link(__('create account?'), ['action' => 'register']) ?>
         </p>
+            </div>
+
+            <div class="col-6">    
+        <p class="mb-0">
+            <?= $this->Html->link(__('forgot password?'), ['action' => 'forgotPassword']) ?>
+        </p>
+            </div>
+
+            </div>
+
     </div>
     <!-- /.login-card-body -->
 </div>

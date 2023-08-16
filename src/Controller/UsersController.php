@@ -23,7 +23,7 @@ class UsersController extends AppController
     public function beforeFilter(EventInterface $event)
     {
         parent::beforeFilter($event);
-        $this->Authentication->allowUnauthenticated(['register', 'activate', 'login', 'forgotPassword']);
+        $this->Authentication->allowUnauthenticated(['register', 'activate', 'login', 'forgotPassword','resetPassword']);
     }
 
     public function register()
@@ -134,6 +134,10 @@ class UsersController extends AppController
         $user = $this->Users->findByResetToken($token)->first();
         if ($user && $user->reset_token_expiry >= Time::now()) {
             if ($this->request->is('post')) {
+
+                if($this->request->getData('confirm_password')!= $this->request->getData('password')){
+                    return $this->Flash->error(__('passwords do not match'));
+                }
                 $user = $this->Users->patchEntity($user, [
                     'password' => $this->request->getData('password'),
                     'reset_token' => null,

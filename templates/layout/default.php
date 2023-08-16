@@ -44,6 +44,7 @@
     <?= $this->Html->css('CakeLte.style') ?>
     <?= $this->element('layout/css') ?>
     <?= $this->fetch('css') ?>
+    <?= $this->Html->css('my-styles.css')?>
 
 </head>
 
